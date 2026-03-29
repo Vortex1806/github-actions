@@ -1,0 +1,28 @@
+#This is the name fo the workflow that will be displayed in the actions tab
+name: CICD
+
+on:
+  #Runs only on manual triggering of the workflow
+  workflow_dispatch: 
+
+jobs:
+  code:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code
+        step: echo "git clone xyz"
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: build docker container
+        step: echo "Docker container build"
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test the container
+        step: echo "Testing the container"
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test the container
+        step: echo "Testing the container"
