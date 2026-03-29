@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vortex UI</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: radial-gradient(circle at top, #0f172a, #020617);
+            color: #e2e8f0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        header h1 {
+            color: #38bdf8;
+            letter-spacing: 2px;
+        }
+
+        nav a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: #cbd5f5;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #38bdf8;
+        }
+
+        .hero {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .hero span {
+            color: #38bdf8;
+        }
+
+        .hero p {
+            max-width: 600px;
+            margin: auto;
+            opacity: 0.8;
+        }
+
+        .btn {
+            margin-top: 30px;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 30px;
+            background: linear-gradient(90deg, #38bdf8, #6366f1);
+            color: white;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px #38bdf8;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 0.9rem;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>VORTEX</h1>
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Projects</a>
+        <a href="#">About</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <div>
+        <h2>Build the Future with <span>AI</span></h2>
+        <p>
+            This is your command center. Create, innovate, and dominate.
+            Every great system starts with a single idea — this is yours.
+        </p>
+        <button class="btn" onclick="launch()">Initialize System</button>
+    </div>
+</section>
+
+<footer>
+    © 2026 Vortex Systems. All rights reserved.
+</footer>
+
+<script>
+    function launch() {
+        alert("🚀 System Initialized!");
+    }
+</script>
+
+</body>
+</html>
