@@ -1,0 +1,30 @@
+name: portfolio
+on:
+  push:
+    branches: [main]
+permissions:
+      pages: write
+      id-token: write
+      
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+      
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Verifying the location
+        run: echo "Your code is cloned here $GITHUB_WORKSPACE"
+        
+      - name: Setup github pages
+        uses: actions/configure-pages@v4
+        
+      - name: Upload static files
+        uses: actions/upload-pages-artifacts@v4
+        
+      - name: Deploy to github pages
+        uses: actions/deploy-pages@v4
