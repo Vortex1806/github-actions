@@ -10,19 +10,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout code
-        step: echo "git clone xyz"
+        run: echo "git clone xyz"
   build:
     runs-on: ubuntu-latest
     steps:
       - name: build docker container
-        step: echo "Docker container build"
+        run: echo "Docker container build"
   test:
     runs-on: ubuntu-latest
     steps:
       - name: Test the container
-        step: echo "Testing the container"
+        run: echo "Testing the container"
   deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Test the container
-        step: echo "Testing the container"
+        run: echo "Testing the container"
