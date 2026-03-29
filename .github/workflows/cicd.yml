@@ -4,6 +4,16 @@ name: CICD
 on:
   #Runs only on manual triggering of the workflow
   workflow_dispatch: 
+    inputs:
+      environments:
+        description: This is environment setup for the ci cd flow to run
+        default: dev
+        required: true
+        type: choice
+        options:
+          - dev
+          - prod
+          - staging
 
 jobs:
   code:
