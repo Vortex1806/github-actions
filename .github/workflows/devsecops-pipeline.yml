@@ -39,3 +39,4 @@ jobs:
         docker-image-scan,
       ]
     uses: ./.github/workflows/deploy-to-server.yml
+    secrets: inherit

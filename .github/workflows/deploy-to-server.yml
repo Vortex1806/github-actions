@@ -13,5 +13,22 @@ jobs:
           username: ${{ secrets.PROD_SERVER_USER }}
           key: ${{ secrets.PROD_SERVER_SSH_KEY }}
           script: |
-            echo "Starting deployment on production server..."
-            mkdir devops
+            echo "Starting deployment..."
+
+            # go to home
+            cd ~
+
+            # pull latest image
+            docker pull shubh1840/portfolio:latest
+
+            # stop old container if exists
+            docker stop app || true
+            docker rm app || true
+
+            # run new container
+            docker run -d \
+                --name app \
+                -p 80:3000 \
+                shubh1840/portfolio:latest
+
+            echo "Deployment done"
