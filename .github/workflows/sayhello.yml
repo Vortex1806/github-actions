@@ -2,10 +2,11 @@
 name: hello
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - '**.html'
+  workflow_dispatch:
+  # push:
+    # branches: [main]  
+    # paths:
+    #  - '**.html'
 jobs:
   #This is the name of the job
   greet:
