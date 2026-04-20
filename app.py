@@ -1,5 +1,5 @@
-from flask import Flast, render_template
-app = Flast(__name__)
+from flask import Flask, render_template
+app = Flask(__name__)
 
 
 @app.route('/')
