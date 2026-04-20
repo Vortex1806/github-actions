@@ -1,14 +1,20 @@
 name: DevSecOps Pipeline
 
 on:
-    workflow_dispatch:
+  workflow_dispatch:
 
 jobs:
-    code-quality:
-        uses: ./.github/workflows/code-quality.yml
-    secrets-scan:
-        uses: ./.github/workflows/secrets-scan.yml
-    dependency-scan:
-        uses: ./.github/workflows/dependencies-scan.yml
-    docker-lint:
-        uses: ./.github/workflows/docker-lint.yml
+  code-quality:
+    uses: ./.github/workflows/code-quality.yml
+  secrets-scan:
+    uses: ./.github/workflows/secrets-scan.yml
+  dependency-scan:
+    uses: ./.github/workflows/dependencies-scan.yml
+  docker-lint:
+    uses: ./.github/workflows/docker-lint.yml
+  docker-build-push:
+    uses: ./.github/workflows/docker-build-push.yml
+  docker-image-scan:
+    uses: ./.github/workflows/image-scan.yml
+  deploy-to-server:
+    uses: ./.github/workflows/deploy-to-server.yml
