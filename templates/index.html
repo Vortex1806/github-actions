@@ -1,129 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vortex UI</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vortex Futuristic UI</title>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', sans-serif;
-        }
+<style>
+body {
+    margin:0;
+    font-family: 'Segoe UI', sans-serif;
+    background:#020617;
+    color:#e2e8f0;
+    overflow:hidden;
+}
 
-        body {
-            background: radial-gradient(circle at top, #0f172a, #020617);
-            color: #e2e8f0;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
+canvas {
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:-1;
+}
 
-        header {
-            padding: 20px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
+header {
+    padding:20px 40px;
+    display:flex;
+    justify-content:space-between;
+}
 
-        header h1 {
-            color: #38bdf8;
-            letter-spacing: 2px;
-        }
+.hero {
+    height:60vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
 
-        nav a {
-            margin-left: 20px;
-            text-decoration: none;
-            color: #cbd5f5;
-            transition: 0.3s;
-        }
+.hero h1 {
+    font-size:3rem;
+}
 
-        nav a:hover {
-            color: #38bdf8;
-        }
+.grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+    padding:40px;
+}
 
-        .hero {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
-        }
+.card {
+    background:rgba(255,255,255,0.05);
+    padding:20px;
+    border-radius:15px;
+    transform-style:preserve-3d;
+    transition:0.3s;
+}
 
-        .hero h2 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
+.card:hover {
+    transform:rotateY(10deg) rotateX(10deg);
+}
 
-        .hero span {
-            color: #38bdf8;
-        }
+.dashboard {
+    position:fixed;
+    right:0;
+    top:0;
+    width:300px;
+    height:100%;
+    background:rgba(0,0,0,0.7);
+    backdrop-filter:blur(10px);
+    padding:20px;
+}
 
-        .hero p {
-            max-width: 600px;
-            margin: auto;
-            opacity: 0.8;
-        }
+.dashboard h3 {
+    margin-bottom:20px;
+}
 
-        .btn {
-            margin-top: 30px;
-            padding: 12px 30px;
-            border: none;
-            border-radius: 30px;
-            background: linear-gradient(90deg, #38bdf8, #6366f1);
-            color: white;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: 0.3s;
-        }
+.product-page {
+    display:none;
+    padding:40px;
+}
 
-        .btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px #38bdf8;
-        }
+button {
+    padding:10px 20px;
+    margin-top:10px;
+    cursor:pointer;
+}
 
-        footer {
-            text-align: center;
-            padding: 15px;
-            font-size: 0.9rem;
-            opacity: 0.6;
-        }
-    </style>
+</style>
 </head>
 <body>
 
+<canvas id="bg"></canvas>
+
 <header>
-    <h1>VORTEX</h1>
-    <nav>
-        <a href="#">Home</a>
-        <a href="#">Projects</a>
-        <a href="#">About</a>
-    </nav>
+<h2>VORTEX</h2>
+<button onclick="openAdmin()">Admin</button>
 </header>
 
-<section class="hero">
-    <div>
-        <h2>Build the Future with <span>Vortex AI DEFENCE SYSTEMS</span></h2>
-        <p>
-            This is your command center. Create, innovate, and dominate.
-            Every great system starts with a single idea — this is yours.
-        </p>
-        <button class="btn" onclick="launch()">Initialize System</button>
-    </div>
-</section>
+<div class="hero">
+<h1>Futuristic Defense Interface</h1>
+</div>
 
-<footer>
-    © 2026 Vortex Systems. All rights reserved.
-</footer>
+<div class="grid" id="products">
+<div class="card" onclick="openProduct('Tank System')">
+<h3>Tank System</h3>
+<p>Advanced armored simulation</p>
+</div>
+
+<div class="card" onclick="openProduct('Missile AI')">
+<h3>Missile AI</h3>
+<p>Precision targeting simulation</p>
+</div>
+
+<div class="card" onclick="openProduct('Jet Control')">
+<h3>Jet Control</h3>
+<p>Next-gen flight systems</p>
+</div>
+
+<div class="card" onclick="openProduct('Bunker Shield')">
+<h3>Bunker Shield</h3>
+<p>Secure infrastructure simulation</p>
+</div>
+</div>
+
+<div class="product-page" id="productPage">
+<h2 id="productTitle"></h2>
+<p>High level futuristic simulation system for portfolio showcase.</p>
+<button onclick="closeProduct()">Back</button>
+</div>
+
+<div class="dashboard" id="adminPanel" style="display:none;">
+<h3>Admin Panel</h3>
+<input type="text" id="newProduct" placeholder="New Product" />
+<button onclick="addProduct()">Add</button>
+</div>
 
 <script>
-    function launch() {
-        alert("🚀 System Initialized!");
-    }
+
+// PARTICLE BACKGROUND
+const canvas = document.getElementById('bg');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+for(let i=0;i<100;i++){
+    particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,vx:1,vy:1});
+}
+
+function animate(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    particles.forEach(p=>{
+        p.x+=p.vx;
+        p.y+=p.vy;
+        if(p.x>canvas.width||p.x<0)p.vx*=-1;
+        if(p.y>canvas.height||p.y<0)p.vy*=-1;
+        ctx.fillRect(p.x,p.y,2,2);
+    });
+    requestAnimationFrame(animate);
+}
+animate();
+
+// PRODUCT PAGE
+function openProduct(name){
+    document.getElementById('products').style.display='none';
+    document.getElementById('productPage').style.display='block';
+    document.getElementById('productTitle').innerText=name;
+}
+
+function closeProduct(){
+    document.getElementById('products').style.display='grid';
+    document.getElementById('productPage').style.display='none';
+}
+
+// ADMIN PANEL
+function openAdmin(){
+    const panel = document.getElementById('adminPanel');
+    panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+}
+
+function addProduct(){
+    const name = document.getElementById('newProduct').value;
+    if(!name) return;
+
+    const div = document.createElement('div');
+    div.className='card';
+    div.innerHTML = `<h3>${name}</h3><p>Custom system</p>`;
+    div.onclick = ()=>openProduct(name);
+
+    document.getElementById('products').appendChild(div);
+}
+
 </script>
 
 </body>
