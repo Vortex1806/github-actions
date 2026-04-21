@@ -30,3 +30,5 @@ jobs:
       [docker-image-scan]
     uses: ./.github/workflows/deploy-to-server.yml
     secrets: inherit
+    with:
+      image_tag: ${{ github.sha }}

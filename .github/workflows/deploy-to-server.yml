@@ -2,6 +2,11 @@ name: This will deploy the safe secure tested app on Prod server
 
 on:
   workflow_call:
+     inputs:
+      image_tag:
+        required: true
+        type: string
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -19,7 +24,7 @@ jobs:
             cd ~
 
             # pull latest image
-            docker pull shubh1840/portfolio:latest
+            docker pull shubh1840/portfolio:${{ inputs.image_tag }}
 
             # stop old container if exists
             docker stop app || true
@@ -29,6 +34,6 @@ jobs:
             docker run -d \
                 --name app \
                 -p 80:3000 \
-                shubh1840/portfolio:latest
+                shubh1840/portfolio:${{ inputs.image_tag }}
 
             echo "Deployment done"
